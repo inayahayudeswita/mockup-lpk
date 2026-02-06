@@ -27,8 +27,7 @@ export default function MainLayout() {
         </main>
         <footer className="bg-white border-t border-gray-200 py-4 px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-sm text-gray-600">© 2024 SIMPEL-LPK. All rights reserved.</p>
-            <p className="text-xs text-gray-500">Version 1.0.0 | Made with ❤️ for LPK Indonesia</p>
+            <p className="text-sm text-gray-600">© 2026 HAYASA-LPK. All rights reserved.</p>
           </div>
         </footer>
       </div>
