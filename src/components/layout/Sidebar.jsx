@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Users, BookOpen, ClipboardCheck, Briefcase, Plane,
   Activity, Wallet, Database, Shield, FileText, Settings, ChevronRight,
-  ChevronLeft, Menu
+  ChevronLeft
 } from 'lucide-react';
 
 const menu = [
@@ -172,7 +172,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
           ${isCollapsed ? 'w-20' : 'w-64'}`}
       >
         <div className="h-full flex flex-col">
-          {/* Logo & Toggle Button */}
+          {/* Logo & Toggle */}
           <div className="flex items-center justify-between p-4 border-b border-gray-100">
             {!isCollapsed ? (
               <div className="flex items-center gap-3">
@@ -189,20 +189,14 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                 <span className="text-xl font-bold text-white">L</span>
               </div>
             )}
-            
-            {/* Toggle Collapse Button - Desktop only */}
+
             <button
               onClick={onToggleCollapse}
               className="hidden lg:flex p-1.5 rounded-lg hover:bg-gray-100 transition-colors text-gray-600"
             >
-              {isCollapsed ? (
-                <ChevronRight className="w-5 h-5" />
-              ) : (
-                <ChevronLeft className="w-5 h-5" />
-              )}
+              {isCollapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
             </button>
 
-            {/* Close Button - Mobile only */}
             <button
               onClick={onClose}
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors"
@@ -225,36 +219,23 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                     <button
                       onClick={() => toggleMenu(item.label)}
                       className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group ${
-                        isActiveParent
-                          ? 'bg-blue-50 text-blue-700'
-                          : 'text-gray-700 hover:bg-gray-50'
+                        isActiveParent ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-50'
                       } ${isCollapsed ? 'justify-center' : 'justify-between'}`}
                       title={isCollapsed ? item.label : ''}
                     >
                       <div className="flex items-center gap-3">
-                        <Icon className={`w-5 h-5 flex-shrink-0 ${
-                          isActiveParent ? 'text-blue-600' : 'text-gray-500 group-hover:text-gray-700'
-                        }`} />
-                        {!isCollapsed && (
-                          <span className="text-sm font-medium">{item.label}</span>
-                        )}
+                        <Icon className={`w-5 h-5 flex-shrink-0 ${isActiveParent ? 'text-blue-600' : 'text-gray-500 group-hover:text-gray-700'}`} />
+                        {!isCollapsed && <span className="text-sm font-medium">{item.label}</span>}
                       </div>
                       {!isCollapsed && (
                         <ChevronRight
-                          className={`w-4 h-4 transition-transform duration-200 ${
-                            openMenus[item.label] ? 'rotate-90' : ''
-                          } ${isActiveParent ? 'text-blue-600' : 'text-gray-400'}`}
+                          className={`w-4 h-4 transition-transform duration-200 ${openMenus[item.label] ? 'rotate-90' : ''} ${isActiveParent ? 'text-blue-600' : 'text-gray-400'}`}
                         />
                       )}
                     </button>
 
-                    {/* Submenu - hanya tampil jika tidak collapsed */}
                     {!isCollapsed && (
-                      <div
-                        className={`overflow-hidden transition-all duration-300 ${
-                          openMenus[item.label] ? 'max-h-96 mt-1' : 'max-h-0'
-                        }`}
-                      >
+                      <div className={`overflow-hidden transition-all duration-300 ${openMenus[item.label] ? 'max-h-96 mt-1' : 'max-h-0'}`}>
                         <div className="ml-3 pl-3 border-l-2 border-gray-100">
                           {item.children.map((child, ci) => (
                             <NavLink
@@ -263,9 +244,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                               onClick={onClose}
                               className={({ isActive }) =>
                                 `block px-4 py-2 rounded-lg text-sm transition-all duration-200 ${
-                                  isActive
-                                    ? 'bg-blue-500 text-white font-medium shadow-sm'
-                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                  isActive ? 'bg-blue-500 text-white font-medium shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                                 }`
                               }
                             >
@@ -285,11 +264,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                   to={item.path}
                   onClick={onClose}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 group ${
-                      isActive
-                        ? 'bg-blue-500 text-white shadow-sm'
-                        : 'text-gray-700 hover:bg-gray-50'
-                    } ${isCollapsed ? 'justify-center' : ''}`
+                    `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 group ${isActive ? 'bg-blue-500 text-white shadow-sm' : 'text-gray-700 hover:bg-gray-50'} ${isCollapsed ? 'justify-center' : ''}`
                   }
                   title={isCollapsed ? item.label : ''}
                 >
@@ -301,7 +276,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
           </nav>
 
           {/* Footer */}
-          {!isCollapsed && (
+          {!isCollapsed ? (
             <div className="p-4 border-t border-gray-100 bg-gray-50">
               <div className="flex items-center gap-3 px-3 py-2">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
@@ -313,10 +288,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                 </div>
               </div>
             </div>
-          )}
-
-          {/* Footer Collapsed */}
-          {isCollapsed && (
+          ) : (
             <div className="p-4 border-t border-gray-100">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-md mx-auto">
                 A

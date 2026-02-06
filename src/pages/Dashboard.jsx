@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, BookOpen, Award, Briefcase, TrendingUp, ArrowUp, ArrowDown } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { motion } from 'framer-motion';
 
 const Dashboard = () => {
@@ -11,7 +11,6 @@ const Dashboard = () => {
       value: '124', 
       change: 12, 
       icon: Users, 
-      color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
       iconColor: 'text-blue-600'
     },
@@ -21,7 +20,6 @@ const Dashboard = () => {
       value: '89', 
       change: 5, 
       icon: BookOpen, 
-      color: 'from-green-500 to-green-600',
       bgColor: 'bg-green-50',
       iconColor: 'text-green-600'
     },
@@ -31,7 +29,6 @@ const Dashboard = () => {
       value: '23', 
       change: -3, 
       icon: Award, 
-      color: 'from-orange-500 to-orange-600',
       bgColor: 'bg-orange-50',
       iconColor: 'text-orange-600'
     },
@@ -41,7 +38,6 @@ const Dashboard = () => {
       value: '156', 
       change: 18, 
       icon: Briefcase, 
-      color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
       iconColor: 'text-purple-600'
     },
@@ -75,21 +71,14 @@ const Dashboard = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-br from-primary-500 via-primary-600 to-accent-600 rounded-2xl p-8 text-white shadow-xl overflow-hidden relative"
+        className="bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-xl overflow-hidden relative"
       >
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24" />
-        
         <div className="relative z-10">
-          <h1 className="text-3xl font-display font-bold mb-2">
-            Selamat Datang di LPK
-          </h1>
-          <p className="text-white/90 text-lg">
-            Sistem Informasi Manajemen Pelatihan Kerja Jepang
-          </p>
-          <p className="text-white/70 mt-2 font-jp text-sm">
-            日本での雇用のための訓練管理システム
-          </p>
+          <h1 className="text-3xl font-bold mb-2">Selamat Datang di LPK</h1>
+          <p className="text-lg text-white/90">Sistem Informasi Manajemen Pelatihan Kerja Jepang</p>
+          <p className="text-sm text-white/70 mt-2 font-jp">日本での雇用のための訓練管理システム</p>
         </div>
       </motion.div>
 
@@ -109,14 +98,11 @@ const Dashboard = () => {
                 <div className={`p-3 ${stat.bgColor} rounded-xl`}>
                   <Icon className={`w-6 h-6 ${stat.iconColor}`} />
                 </div>
-                <div className={`flex items-center gap-1 text-sm font-semibold ${
-                  stat.change > 0 ? 'text-green-600' : 'text-red-600'
-                }`}>
+                <div className={`flex items-center gap-1 text-sm font-semibold ${stat.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {stat.change > 0 ? <ArrowUp className="w-4 h-4" /> : <ArrowDown className="w-4 h-4" />}
                   {Math.abs(stat.change)}%
                 </div>
               </div>
-              
               <h3 className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</h3>
               <p className="text-sm text-gray-600 font-medium">{stat.title}</p>
               <p className="text-xs text-gray-400 mt-2">vs bulan lalu</p>
@@ -127,7 +113,7 @@ const Dashboard = () => {
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Kelulusan Seleksi Chart */}
+        {/* Kelulusan Chart */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -139,7 +125,7 @@ const Dashboard = () => {
               <h3 className="text-lg font-bold text-gray-900">Statistik Kelulusan Seleksi</h3>
               <p className="text-sm text-gray-500">6 Bulan Terakhir</p>
             </div>
-            <select className="px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+            <select className="px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option>6 Bulan</option>
               <option>1 Tahun</option>
             </select>
@@ -148,15 +134,10 @@ const Dashboard = () => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="month" stroke="#9ca3af" style={{ fontSize: '12px' }} />
-              <YAxis stroke="#9ca3af" style={{ fontSize: '12px' }} />
+              <XAxis dataKey="month" stroke="#9ca3af" style={{ fontSize: 12 }} />
+              <YAxis stroke="#9ca3af" style={{ fontSize: 12 }} />
               <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'white', 
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-                }}
+                contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
               />
               <Bar dataKey="lulus" fill="#10b981" radius={[8, 8, 0, 0]} />
               <Bar dataKey="tidak" fill="#ef4444" radius={[8, 8, 0, 0]} />
@@ -182,18 +163,16 @@ const Dashboard = () => {
           transition={{ delay: 0.5 }}
           className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
         >
-          <div className="mb-6">
-            <h3 className="text-lg font-bold text-gray-900">Progress Pembelajaran</h3>
-            <p className="text-sm text-gray-500">Rata-rata per program</p>
-          </div>
+          <h3 className="text-lg font-bold text-gray-900 mb-6">Progress Pembelajaran</h3>
+          <p className="text-sm text-gray-500 mb-4">Rata-rata per program</p>
 
           <div className="space-y-6">
-            {progressData.map((item, index) => (
+            {progressData.map((item, idx) => (
               <motion.div
-                key={index}
+                key={idx}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
+                transition={{ delay: 0.6 + idx * 0.1 }}
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-gray-700">{item.name}</span>
@@ -203,7 +182,7 @@ const Dashboard = () => {
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.progress}%` }}
-                    transition={{ duration: 1, delay: 0.7 + index * 0.1, ease: "easeOut" }}
+                    transition={{ duration: 1, delay: 0.7 + idx * 0.1, ease: "easeOut" }}
                     className={`h-full ${item.color} rounded-full shadow-lg`}
                   />
                 </div>
@@ -227,9 +206,7 @@ const Dashboard = () => {
               <h3 className="text-lg font-bold text-gray-900">Penempatan Terbaru</h3>
               <p className="text-sm text-gray-500">Peserta yang baru ditempatkan</p>
             </div>
-            <button className="text-sm text-primary-600 font-semibold hover:text-primary-700">
-              Lihat Semua
-            </button>
+            <button className="text-sm text-blue-600 font-semibold hover:text-blue-700">Lihat Semua</button>
           </div>
 
           <div className="space-y-4">
@@ -241,7 +218,7 @@ const Dashboard = () => {
                 transition={{ delay: 0.9 + index * 0.1 }}
                 className="flex items-center gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0">
                   {placement.avatar}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -251,9 +228,7 @@ const Dashboard = () => {
                   </p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                  placement.status === 'Berangkat' 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-yellow-100 text-yellow-700'
+                  placement.status === 'Berangkat' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
                 }`}>
                   {placement.status}
                 </span>
@@ -269,10 +244,8 @@ const Dashboard = () => {
           transition={{ delay: 0.9 }}
           className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 shadow-lg border border-gray-200"
         >
-          <div className="mb-6">
-            <h3 className="text-lg font-bold text-gray-900">Quick Actions</h3>
-            <p className="text-sm text-gray-500">Akses cepat fitur utama</p>
-          </div>
+          <h3 className="text-lg font-bold text-gray-900 mb-6">Quick Actions</h3>
+          <p className="text-sm text-gray-500 mb-4">Akses cepat fitur utama</p>
 
           <div className="grid grid-cols-2 gap-3">
             {[

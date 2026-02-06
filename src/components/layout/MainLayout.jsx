@@ -7,21 +7,12 @@ export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
-  const closeSidebar = () => {
-    setSidebarOpen(false);
-  };
-
-  const toggleCollapse = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
-  };
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const closeSidebar = () => setSidebarOpen(false);
+  const toggleCollapse = () => setSidebarCollapsed(!sidebarCollapsed);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Sidebar */}
       <Sidebar 
         isOpen={sidebarOpen} 
         onClose={closeSidebar}
@@ -29,29 +20,15 @@ export default function MainLayout() {
         onToggleCollapse={toggleCollapse}
       />
 
-      {/* Main Content Area */}
-      <div 
-        className={`min-h-screen flex flex-col transition-all duration-300 ${
-          sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'
-        }`}
-      >
-        {/* Header */}
+      <div className={`min-h-screen flex flex-col transition-all duration-300 ${sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}>
         <Header onToggleSidebar={toggleSidebar} />
-
-        {/* Page Content */}
         <main className="flex-1 overflow-x-hidden">
           <Outlet />
         </main>
-
-        {/* Footer (optional) */}
         <footer className="bg-white border-t border-gray-200 py-4 px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-sm text-gray-600">
-              © 2024 SIMPEL-LPK. All rights reserved.
-            </p>
-            <p className="text-xs text-gray-500">
-              Version 1.0.0 | Made with ❤️ for LPK Indonesia
-            </p>
+            <p className="text-sm text-gray-600">© 2024 SIMPEL-LPK. All rights reserved.</p>
+            <p className="text-xs text-gray-500">Version 1.0.0 | Made with ❤️ for LPK Indonesia</p>
           </div>
         </footer>
       </div>

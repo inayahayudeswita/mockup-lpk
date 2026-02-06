@@ -1,11 +1,10 @@
 import React from 'react';
-import { Search, Menu, Bell, User } from 'lucide-react';
+import { Search, Bell, Menu } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
 export default function Header({ onToggleSidebar }) {
   const { pathname } = useLocation();
 
-  // Format title dari pathname
   const getTitle = () => {
     const paths = pathname.split('/').filter(Boolean);
     if (paths.length === 0) return 'Dashboard';
@@ -20,7 +19,7 @@ export default function Header({ onToggleSidebar }) {
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 lg:px-6 shadow-sm sticky top-0 z-20">
       <div className="flex items-center gap-4">
-        {/* Hamburger Button - hanya muncul di mobile */}
+        {/* Hamburger Button - mobile */}
         <button
           onClick={onToggleSidebar}
           className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -34,10 +33,7 @@ export default function Header({ onToggleSidebar }) {
           <h1 className="text-xl font-bold text-gray-900">{getTitle()}</h1>
           <p className="text-xs text-gray-500 hidden sm:block">
             {new Date().toLocaleDateString('id-ID', { 
-              weekday: 'long', 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
+              weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
             })}
           </p>
         </div>
@@ -45,7 +41,7 @@ export default function Header({ onToggleSidebar }) {
 
       {/* Right Section */}
       <div className="flex items-center gap-3">
-        {/* Search Bar - hidden on mobile */}
+        {/* Search Bar */}
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
           <input
