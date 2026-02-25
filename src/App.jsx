@@ -71,6 +71,10 @@ import CheckinBerkala from './pages/monitoring/CheckinBerkala';
 import EvaluasiPerusahaan from './pages/monitoring/EvaluasiPerusahaan';
 import IncidentReport from './pages/monitoring/IncidentReport';
 import DataKepulangan from './pages/monitoring/DataKepulangan';
+import DataPenempatan from './pages/monitoring/DataPenempatan';
+import EvaluasiKinerja from './pages/monitoring/EvaluasiKinerja';
+import LaporanMasalah from './pages/monitoring/LaporanMasalah';
+import PerpanjanganKontrak from './pages/monitoring/PerpanjanganKontrak';
 
 // Budgeting & Control
 import BudgetPeriod from './pages/budgeting/BudgetPeriod';
@@ -199,12 +203,17 @@ function App() {
           <Route path="/dokumen/histori" element={<VersiHistori />} />
           <Route path="/dokumen/reminder" element={<ReminderExpired />} />
 
-          {/* Monitoring Jepang */}
+         {/* Monitoring Jepang */}
           <Route path="/monitoring/status-kerja" element={<StatusKerjaSiswa />} />
           <Route path="/monitoring/checkin" element={<CheckinBerkala />} />
           <Route path="/monitoring/evaluasi-perusahaan" element={<EvaluasiPerusahaan />} />
+          <Route path="/monitoring/evaluasi-kinerja" element={<EvaluasiKinerja />} />
           <Route path="/monitoring/incident" element={<IncidentReport />} />
+          <Route path="/monitoring/laporan-masalah" element={<LaporanMasalah />} />
+          <Route path="/monitoring/penempatan" element={<DataPenempatan />} />
+          <Route path="/monitoring/perpanjangan-kontrak" element={<PerpanjanganKontrak />} />
           <Route path="/monitoring/kepulangan" element={<DataKepulangan />} />
+                    
 
           {/* Budgeting & Control */}
           <Route path="/budgeting/period" element={<BudgetPeriod />} />
